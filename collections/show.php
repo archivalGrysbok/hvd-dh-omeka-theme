@@ -24,6 +24,18 @@ $collectionTitle = strip_formatting(metadata('collection', array('Dublin Core', 
 ?>
 
 <?php
+    $hasVersion =  metadata('collection', array('Dublin Core','Has Version'));
+    if ($hasVersion) {
+        echo("<p>$hasVersion</p>");
+    }
+?>
+<?php
+    $identifier =  metadata('collection', array('Dublin Core','Identifier'));
+    if ($identifier) {
+        echo("<p>$identifier</p>");
+    }
+?>
+<?php
   $collectionMaxDisplay = intval(get_theme_option('Browse Collection Max Items'));
   if (metadata('collection', 'total_items') > $collectionMaxDisplay):
   # If we have more than the maximum number of items we want to display,
@@ -61,7 +73,7 @@ $collectionTitle = strip_formatting(metadata('collection', array('Dublin Core', 
 
         <?php if ($description = dh_theme_get_display_description(250, $item)): ?>
         <div class="item-description">
-            <p><?php echo $description; ?></p>
+            <p><?php echo $description; ?></p><p><?php echo $hasVersion; ?></p><p><?php echo $identifier; ?></p>
         </div>
         <?php endif; ?>
     </div>

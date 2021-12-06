@@ -46,7 +46,7 @@
 }
 
 .desc a:after, .asc a:after {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   display: inline-block;
   height: 0;
   width: 0;
@@ -214,7 +214,7 @@ table.item-metadata th {
 
 .hTagcloud input[type=checkbox] + label::before {
   content: "\f096";
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   width: 1em;
   text-align: left;
   display: inline-block;
@@ -369,8 +369,9 @@ table.item-metadata th {
   color: #666;
 }
 .remove_search:after {
-  content: "\f00d";
-  font-family: "FontAwesome";
+/*  content: "\f002";*/
+  content: "Search";
+  font-family: "Font Awesome 5 Free";
   text-indent: 0;
   text-align: center;
   width: 100%;

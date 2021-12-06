@@ -6,19 +6,25 @@ var set_thumbnails = function() {
   return thumbnails;
 };
 
+function getExtension(filename) {
+    return filename.split('.').pop().toLowerCase();
+}
 var set_gallery = function() {
   var fancybox_gallery = jQuery.map(jQuery('.download-file img'), function(element) {
     jElement = jQuery(element);
     // var href = jElement.attr('filename');
     var href = jElement.attr('src');
-    href = href.replace(/%2F/g,'/');
-    href = href.split('/');
-    href.reverse();
-    href[0] = jElement.attr('filename');
-    href[1] = 'original';
-    href.reverse();
-    href = href.join('/');
-    var title = jElement.attr('title');
+    var extension = getExtension(jElement.attr('filename'));
+    if (extension === "pdf")
+	         href = jElement.attr('filename');
+//    href = href.replace(/%2F/g,'/');
+//    href = href.split('/');
+//    href.reverse();
+//    href[0] = jElement.attr('filename');
+//    href[1] = 'original';
+//    href.reverse();
+//    href = href.join('/');
+    var title = "View original file (best quality, largest size)";
     var linkOut = jElement.parent().attr('href');
     title = '<a href="'+linkOut+'">'+title+'</a>';
     var fancybox_item = {
@@ -39,15 +45,16 @@ var onImageClick = function(e,thumbnails,fancybox_gallery) {
   jQuery.fancybox(fancybox_gallery,{
     index:startIndex,
     afterLoad:function() {
-      this.title = '<a href="'+this.href+'">Fullsize Image</a>  |  ' + this.title;
+      this.title =// '<a href="'+this.href+'">Fullsize Image</a>  |  Download file: ' + 
+    this.title;
     }
   });
-  jQuery.fancybox(fancybox_gallery,{
-      index:startIndex,
-      afterLoad:function() {
-        this.title = '<a href="'+this.href+'">Fullsize Image</a>  |  ' + this.title;
-      }
-  });
+//  jQuery.fancybox(fancybox_gallery,{
+//      index:startIndex,
+//      afterLoad:function() {
+//        this.title = '<a href="'+this.href+'">Fullsize Image</a>  |  Download file ' + this.title;
+//      }
+//  });
 };
 
 var make_fancybox_gallery = function() {
